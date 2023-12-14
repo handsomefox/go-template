@@ -1,0 +1,11 @@
+postgresConn: "user=postgres password=postgres port=5432 dbname=db sslmode=disable"
+env: "development"
+sessionKey: "SESSION_KEY"
+jwtSecret: "JWT_SECRET"
+jwtIssuer: "Development"
+httpServer:
+  host: "http://localhost"
+  port: "3000"
+  readTimeout: 5s
+  writeTimeout: 10s
+  idleTimeout: 60s

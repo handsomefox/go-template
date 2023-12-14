@@ -1,0 +1,26 @@
+name: Go
+
+on:
+  push:
+    branches: [developer]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.21"
+
+      - name: Build the api
+        run: go build -v ./cmd/http/http.go
+
+      - name: Test everything
+        env:
+          CI: "CI"
+        run: go test -v ./...
