@@ -16,6 +16,7 @@ func main() {
 
 	// Init logger
 	log := cfg.NewLogger()
+	log.Debug().Msg("debug logs are enabled")
 
 	// Init app
 	app := echo.New()
@@ -27,6 +28,7 @@ func main() {
 	app.Server.WriteTimeout = cfg.WriteTimeout
 
 	if cfg.UseGoJSON {
+		log.Info().Msg("using go-json")
 		app.JSONSerializer = &json.GoJSONSerializer{}
 	}
 

@@ -3,6 +3,7 @@ env: "development"
 sessionKey: "SESSION_KEY"
 jwtSecret: "JWT_SECRET"
 jwtIssuer: "Development"
+useGoJson: true
 httpServer:
   host: "http://localhost"
   port: "3000"
