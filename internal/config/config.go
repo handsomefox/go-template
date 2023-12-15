@@ -81,11 +81,11 @@ func (cfg *Application) NewLogger() *zerolog.Logger {
 	logger := log.Logger.With().Caller().Timestamp().Stack().Logger()
 	switch cfg.Environment {
 	case EnvDevelopment:
-		logger = log.Level(zerolog.DebugLevel).Output(zerolog.ConsoleWriter{Out: os.Stderr})
+		logger = logger.Level(zerolog.DebugLevel).Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	case EnvStaging:
-		logger = log.Level(zerolog.InfoLevel)
+		logger = logger.Level(zerolog.InfoLevel)
 	case EnvProduction:
-		logger = log.Level(zerolog.WarnLevel)
+		logger = logger.Level(zerolog.WarnLevel)
 	}
 
 	return &logger
