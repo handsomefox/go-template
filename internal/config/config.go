@@ -78,7 +78,7 @@ func (cfg *Application) NewLogger() *zerolog.Logger {
 		return short + ":" + strconv.Itoa(line)
 	}
 
-	logger := log.Logger.With().Caller().Timestamp().Stack().Logger()
+	logger := zerolog.New(os.Stderr).With().Caller().Timestamp().Stack().Logger()
 	switch cfg.Environment {
 	case EnvDevelopment:
 		logger = logger.Level(zerolog.DebugLevel).Output(zerolog.ConsoleWriter{Out: os.Stderr})
