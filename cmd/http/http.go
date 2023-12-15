@@ -37,9 +37,9 @@ func main() {
 
 	// Use middleware (depending on cfg.Enviornment)
 	app.Use(
+		middleware.RequestID(),
 		cfg.NewLoggerMiddleware(),
 		middleware.Recover(),
-		middleware.RequestID(),
 	)
 
 	// Make routes
