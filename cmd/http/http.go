@@ -7,7 +7,6 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/ziflex/lecho/v3"
 )
 
 func main() {
@@ -22,7 +21,7 @@ func main() {
 	app := echo.New()
 	app.Debug = false
 	app.HideBanner = true
-	app.Logger = lecho.From(*log)
+	app.HidePort = true
 	app.Server.IdleTimeout = cfg.IdleTimeout
 	app.Server.ReadTimeout = cfg.ReadTimeout
 	app.Server.WriteTimeout = cfg.WriteTimeout
@@ -50,6 +49,7 @@ func main() {
 	healthcheckHandler.Bind(app.Group(""))
 
 	// Run
+	log.Info().Str("host", cfg.Host).Str("port", cfg.Port).Str("link", cfg.Host+":"+cfg.Port).Msg("server starting")
 	if err := app.Start(":" + cfg.Port); err != nil {
 		log.Fatal().Err(err).Msg("fatal server error")
 	}
